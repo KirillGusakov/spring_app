@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новая книга</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <form th:method="POST" th:action="@{/books}" th:object="${book}">
+
+        <label for="name">Введите название книги:</label>
+        <input th:field="*{name}" type="text" id="name">
+        <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+        <label for="author">Введите автора:</label>
+        <input th:field="*{author}" type="text" id="author">
+        <div class="error" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></div>
+
+        <label for="year">Введите дату издания:</label>
+        <input th:field="*{year}" type="date" id="year">
+        <div class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></div>
+
+        <input type="submit" value="Добавить!">
+    </form>
+
+</div>
+
+</body>
+</html>

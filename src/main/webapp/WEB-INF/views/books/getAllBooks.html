@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <title>Список книг</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-link {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        .book-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .add-book-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-book-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Список книг</h2>
+    <hr>
+    <div th:each="book : ${books}">
+        <a th:href="@{/books/{id}(id=${book.getId()})}" class="book-link">
+            <p>
+                <span th:text="${'Название книги: ' + book.getName()}"></span>
+                <span th:text="${' Автор: ' + book.getAuthor()}"></span>
+                <span th:text="${' Год издания: ' + book.getYear()}"></span>
+            </p>
+        </a>
+    </div>
+    <hr>
+    <form th:action="@{/books/new}" th:method="GET" style="display:inline;">
+        <button type="submit" class="add-book-btn">Добавить книгу</button>
+    </form>
+</div>
+
+</body>
+</html>

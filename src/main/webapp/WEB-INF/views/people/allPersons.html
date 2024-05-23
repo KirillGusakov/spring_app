@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <title>Список пользователей</title>
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .person {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .person a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .person a:hover {
+            text-decoration: underline;
+        }
+
+        .add-user-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .add-user-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Список пользователей</h1>
+    <div th:each="person : ${people}" class="person">
+        <a th:href="@{/people/{id}(id=${person.getId()})}" th:text="${'Фио: ' + person.getFio() + ' День рождения: ' + person.getDate()}"></a>
+    </div>
+    <hr>
+    <a th:href="@{/people/new}" class="add-user-btn">Добавить пользователя</a>
+</div>
+
+
+
+</body>
+</html>
