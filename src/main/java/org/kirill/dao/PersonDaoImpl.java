@@ -21,7 +21,6 @@ public class PersonDaoImpl implements PersonDao{
     }
 
     @Override
-    @Transactional
     public List<Person> getPeople() {
         Session currentSession = sessionFactory.getCurrentSession();
         return currentSession
@@ -29,21 +28,18 @@ public class PersonDaoImpl implements PersonDao{
     }
 
     @Override
-    @Transactional
     public void savePerson(Person person) {
        Session currentSession = sessionFactory.getCurrentSession();
        currentSession.persist(person);
     }
 
     @Override
-    @Transactional
     public Person getById(int id) {
         Session currentSession = sessionFactory.getCurrentSession();
         return currentSession.get(Person.class, id);
     }
 
     @Override
-    @Transactional
     public void updatePerson(Person person) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.createMutationQuery("UPDATE Person SET fio = :fio, date = :date WHERE id = :id")
@@ -55,7 +51,6 @@ public class PersonDaoImpl implements PersonDao{
     }
 
     @Override
-    @Transactional
     public void deletePerson(int id) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.createMutationQuery("DELETE FROM Person WHERE id =:id")

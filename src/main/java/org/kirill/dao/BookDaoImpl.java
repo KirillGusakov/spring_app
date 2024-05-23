@@ -20,7 +20,6 @@ public class BookDaoImpl implements BookDao{
 
 
     @Override
-    @Transactional
     public List<Book> getBook() {
         Session currentSession = sessionFactory.getCurrentSession();
         return currentSession
@@ -28,21 +27,18 @@ public class BookDaoImpl implements BookDao{
     }
 
     @Override
-    @Transactional
     public void saveBook(Book book) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.persist(book);
     }
 
     @Override
-    @Transactional
     public Book getById(int id) {
         Session currentSession = sessionFactory.getCurrentSession();
         return currentSession.get(Book.class, id);
     }
 
     @Override
-    @Transactional
     public void updateBook(Book book) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.createMutationQuery("UPDATE Book SET name = :name," +
@@ -55,7 +51,6 @@ public class BookDaoImpl implements BookDao{
     }
 
     @Override
-    @Transactional
     public void deleteBook(int id) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.createMutationQuery("DELETE FROM Book WHERE id =:id")
@@ -64,7 +59,6 @@ public class BookDaoImpl implements BookDao{
     }
 
     @Override
-    @Transactional
     public void releaseBook(Book book) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.merge(book);
